@@ -1,0 +1,29 @@
+Package: GoeRTS
+Type: Package
+Title: Construction of New Series
+Version: 0.1.0
+Date: June-2019
+Author: Cristian Pachacama <@>
+Maintainer: Cristian Pachacama<@>
+Description: This package is used for the reconstruction of Time Series with the use of the functions
+    geoRts: function that allows the reconstruction of Time Series through the distance 
+    matrix (positions) forming the gravitational matrix with the help of the characteris-
+    tic weights of each series.
+    DistribEmpirica: it is a step function that jumps by 1/N to the occurrence of each 
+    time series.
+    rts_clean: data cleaning and data reconstruction.
+    rts_plotClean: drawing of the complete series. 
+    rEmpirica: simulates the Empirical Distribution function "DistribEmpirica".
+    rts_plotGroup: takes the original time series and the reconstructed and graphic time
+    series.
+    rts_plot: graph for an individual time series.
+Imports: 
+    dplyr,
+    ggplot2,
+    gridExtra,
+    reshape2,
+    stlplus
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
