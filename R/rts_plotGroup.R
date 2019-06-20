@@ -1,4 +1,10 @@
-#================================================
+#'--------------- Plot of Time Series ----------------
+#'
+#' This function generates a plot with the original and reconstructed series
+#' @param TS is a object type ts wiht ncol mayor o equal to 2 and It represents the original series that user establishes
+#' @param RTS is a object type ts that that is generated from the reconstruction of series
+#' @return a plot with the original series and the reconstructed series are found
+#' @export
 rts_plotGroup=function(TS,RTS){
   require(ggplot2)
   require(reshape2)
