@@ -3,6 +3,7 @@
 #'
 #' @param Xrand is a vector with observations of a random variable
 #' @param x is a vector which will be evaluate the Empirical Distribution function
+#' @return Distrib a vector which contain the values of empirical distribution function evaluated in x
 #' @export
 
 rts_distrib = function(Xrand,x=Xrand){

@@ -7,7 +7,7 @@
 #' @param positions.RTS is a data frame that contain values of longitude and latitude about each serie for build.
 #' @param weights.RTS is a data frame that contain values of each series for build. This can be NULL
 #' @param D is a distance matrix of all ditances. This should be entered by the user
-#' @return RTS new series
+#' @return RTS new series reconstructed
 #' @export
 
 geoRts = function(TS,positions.TS,weights.TS = NULL,positions.RTS,weights.RTS=NULL,D = NULL){

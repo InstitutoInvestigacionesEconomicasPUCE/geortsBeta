@@ -1,3 +1,10 @@
+# RTS Plot ----------------
+#' This function plot a ts object
+#'
+#' @param TS is a ts object with ncol()>=2
+#' @param n_variable the time series that will be plot
+#' @return p1 ggplot object
+#' @export
 
 rts_plot = function(TS, n_variable=1){
   
