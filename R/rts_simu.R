@@ -1,12 +1,17 @@
-
-#Simulacion
-rEmpirica = function(Lista_Xi,n=1){
-  Lista_Xi = Lista_Xi[!is.na(Lista_Xi)]
+#'--------------- Simulation of Time Series ----------------
+#'
+#' This function simulates n observation of the random variable Xrand from empirical distribution function 
+#' @param Xrand is a list with observations of the randon variable
+#' @param n is a interger that represent the observations tmakes 
+#' @return simulation la distribucion empirica de la lista Xrand 
+#' @export 
+rts_simu = function(Xrand,n=1){
+  Xrand = Xrand[!is.na(Xrand)]
   if(n>0){
     u =runif(n)
     xsim=c()
     for(k in 1:n){
-      xsim[k] = min(Lista_Xi[u[k]<=DistribEmpirica(Lista_Xi)],na.rm = TRUE)
+      xsim[k] = min(Xrand[u[k]<=rts_distrib(Xrand)],na.rm = TRUE)
     }
     
   }else{
