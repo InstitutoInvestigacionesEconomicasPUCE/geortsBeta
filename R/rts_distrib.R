@@ -13,6 +13,5 @@ rts_distrib = function(Xrand,x=Xrand){
     Indicatriz = as.numeric(Xrand <= x[i])
     Distrib[i] = mean(Indicatriz, na.rm = TRUE)
   }
-  
   return(Distrib)
 }
