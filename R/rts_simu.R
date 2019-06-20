@@ -1,6 +1,6 @@
 #'--------------- Simulation of Time Series ----------------
 #'
-#' This function simulates n observation of the random variable Xrand from the distribution function 
+#' This function simulates n observation of the random variable Xrand from empirical distribution function 
 #' @param Xrand is a list with observations of the randon variable
 #' @param n is a interger that represent the observations tmakes 
 #' @return simulation la distribucion empirica de la lista Xrand 
