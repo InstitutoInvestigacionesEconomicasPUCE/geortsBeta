@@ -11,7 +11,6 @@
 #' @export
 
 geoRts = function(TS,positions.TS,weights.TS = NULL,positions.RTS,weights.RTS=NULL,D = NULL){
-  require(gridExtra)
   n = dim(TS)[2]
   # Distances Matrix
   positions = rbind(positions.TS,positions.RTS)
@@ -52,14 +51,6 @@ geoRts = function(TS,positions.TS,weights.TS = NULL,positions.RTS,weights.RTS=NU
   RTS = ts(RTS,start = start(TS),frequency = frequency(TS))
   colnames(RTS) = paste0("Serie",(n+1):N)
 
-  # RTS Plot
-  # if(plots & (N-n)<=5){
-  #   pl = list()
-  #   for(k in seq(N-n)){
-  #     pl[[k]] = rts_plot(RTS,n_variable = k)
-  #   }
-  #   gridExtra::grid.arrange(grobs=pl,nrow=N-n)
-  # }
 
   return(RTS)
 
