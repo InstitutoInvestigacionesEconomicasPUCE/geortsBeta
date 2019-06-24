@@ -1,28 +1,24 @@
 Package: GoeRTS
-Type: Package
-Title: Construction of New Series
 Version: 0.1.0
-Date: June-2019
-Author: Cristian Pachacama <@>
-Maintainer: Cristian Pachacama<@>
-Description: This package is used for the reconstruction of Time Series with the use of the functions
-    geoRts: function that allows the reconstruction of Time Series through the distance 
-    matrix (positions) forming the gravitational matrix with the help of the characteris-
-    tic weights of each series.
-    DistribEmpirica: it is a step function that jumps by 1/N to the occurrence of each 
-    time series.
-    rts_clean: data cleaning and data reconstruction.
-    rts_plotClean: drawing of the complete series. 
-    rEmpirica: simulates the Empirical Distribution function "DistribEmpirica".
-    rts_plotGroup: takes the original time series and the reconstructed and graphic time
-    series.
-    rts_plot: graph for an individual time series.
+Date: 2019-06-24
+Title: Reconstruction of Geographical Time Series
+Authors@R: c(person("Cristian","Pachacama",role=c("aut","cre"),email="cdpachacama@puce.edu.ec"),
+             person("Danilo","Loza",role=c("ctb"),email="danilo.loza@epn.edu.ec"),
+             person("Ana","Taipe",role=c("ctb"),email="ana.taipe@epn.edu.ec"))
+Author: Cristian Pachacama [aut,cre]
+    Pedro Páez Pérez [aut]    
+    Danilo Loza [ctb]
+    Ana Taipe [ctb]
+Maintainer: Cristian Pachacama <cdpachacama@puce.edu.ec>
+Depends: R (>= 3.5.1)
 Imports: 
-    dplyr,
-    ggplot2,
-    gridExtra,
+    stlplus, 
+    dplyr, 
+    ggplot2, 
     reshape2,
-    stlplus
+    gridExtra
+Description: This package is used for the reconstruction of Geographical 
+    Time Series with the use of the functions
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
