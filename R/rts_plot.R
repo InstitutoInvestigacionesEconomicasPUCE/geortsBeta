@@ -1,28 +1,27 @@
-# RTS Plot ----------------
-#' This function plot a ts object
-#'
-#' @param TS is a ts object with ncol()>=2
-#' @param n_variable the time series that will be plot
-#' @return p1 ggplot object
+#' @title Plot of Time Series
+#' @description This function plot a ts object
+#' @param TS is a ts object with \code{ncol()>=2}
+#' @param n_variable the column position of time serie in \code{TS} that will be plot.
+#' @return ggplot object with graphic of time serie
 #' @export
 
 rts_plot = function(TS, n_variable=1){
-  
+
   require(ggplot2)
-  
+
   serieDF = data.frame(TS)
   # serieDF = TS
   Fecha = seq.Date(from = as.Date(paste(c(start(TS),1),collapse = "/")),
-                  by="month" ,length.out = dim(TS)[1] )  
+                  by="month" ,length.out = dim(TS)[1] )
   serNomb = names(serieDF)
   serieDF$Fecha = Fecha
   serNomb = paste0("`",serNomb,"`")
-  p1 = ggplot(data = serieDF, 
-         aes_string(x = "Fecha", 
+  p1 = ggplot(data = serieDF,
+         aes_string(x = "Fecha",
                     y = serNomb[n_variable] )) +
-    geom_line(size = 0.8) + 
+    geom_line(size = 0.8) +
     theme_minimal() +
-    scale_x_date(                                        
+    scale_x_date(
       breaks = "2 months",
       date_labels = "%b %Y"
     )+

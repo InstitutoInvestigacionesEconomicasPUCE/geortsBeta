@@ -1,10 +1,9 @@
-#'--------------- Simulation of Time Series ----------------
-#'
-#' This function simulates n observation of the random variable Xrand from empirical distribution function 
-#' @param Xrand is a list with observations of the randon variable
-#' @param n is a interger that represent the observations tmakes 
-#' @return a simulation of empirical distribucion of Xrand 
-#' @export 
+#' @title Simulation based on observations of a random variable
+#' @description This function simulates n observations of the random variable, based on the empirical distribution function of it's observations \code{Xrand}.
+#' @inheritParams rts_distrib
+#' @param n is the number of observations to be simulated
+#' @return a simulation of empirical distribucion of Xrand
+#' @export
 rts_simu = function(Xrand,n=1){
   Xrand = Xrand[!is.na(Xrand)]
   if(n>0){
@@ -13,11 +12,11 @@ rts_simu = function(Xrand,n=1){
     for(k in 1:n){
       xsim[k] = min(Xrand[u[k]<=rts_distrib(Xrand)],na.rm = TRUE)
     }
-    
+
   }else{
     xsim = NA
     print("Ingrese un n adecuado")
   }
-  
+
   return(xsim)
 }

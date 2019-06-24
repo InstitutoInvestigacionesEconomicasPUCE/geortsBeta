@@ -2,7 +2,7 @@
 % Please edit documentation in R/georts.R
 \name{geoRts}
 \alias{geoRts}
-\title{This function build news tieme series through seires series established by the user}
+\title{Geo-reconstruction of Time Series}
 \usage{
 geoRts(TS, positions.TS, weights.TS = NULL, positions.RTS,
   weights.RTS = NULL, D = NULL)
@@ -21,7 +21,7 @@ geoRts(TS, positions.TS, weights.TS = NULL, positions.RTS,
 \item{D}{is a distance matrix of all ditances. This should be entered by the user}
 }
 \value{
-RTS new series
+RTS new series reconstructed
 }
 \description{
 This function build news tieme series through seires series established by the user
