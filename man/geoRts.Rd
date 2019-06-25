@@ -24,5 +24,5 @@ geoRts(TS, positions.TS, weights.TS = NULL, positions.RTS,
 RTS new series reconstructed
 }
 \description{
-This function build news tieme series through seires series established by the user
+This function aproximate by interpolation the values of a time series (unknonw), based in the values of near (geographically) time series.
 }

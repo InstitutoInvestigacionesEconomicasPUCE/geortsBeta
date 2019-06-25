@@ -1,5 +1,5 @@
 #' @title Geo-reconstruction of Time Series
-#' @description This function build news tieme series through seires series established by the user
+#' @description This function aproximate by interpolation the values of a time series (unknonw), based in the values of near (geographically) time series.
 #' @param TS is a data frame of time series
 #' @param positions.TS is a data frame that contain longitude and latitude
 #' @param weights.TS is a data frame that contain values of each original serie.
