@@ -2,7 +2,7 @@
 % Please edit documentation in R/rts_plotGroup.R
 \name{rts_plotGroup}
 \alias{rts_plotGroup}
-\title{--------------- Plot of Time Series ----------------}
+\title{Plot of Time Series}
 \usage{
 rts_plotGroup(TS, RTS)
 }

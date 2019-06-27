@@ -8,20 +8,20 @@ geoRts(TS, positions.TS, weights.TS = NULL, positions.RTS,
   weights.RTS = NULL, D = NULL)
 }
 \arguments{
-\item{TS}{is a data frame of time series}
+\item{TS}{is a object of class "ts" (time series), with \code{ncol()>2}}
 
-\item{positions.TS}{is a data frame that contain longitude and latitude}
+\item{positions.TS}{is a data frame that containing longitude and latitude asociated to time series in TS}
 
-\item{weights.TS}{is a data frame that contain values of each original serie.}
+\item{weights.TS}{is a data frame that containing weights (of influence) of time series in TS.}
 
-\item{positions.RTS}{is a data frame that contain values of longitude and latitude about each serie for build.}
+\item{positions.RTS}{is a data frame that containing values of longitude and latitude about each serie for build.}
 
-\item{weights.RTS}{is a data frame that contain values of each series for build. This can be NULL}
+\item{weights.RTS}{is a data frame that containing weights (of influence) of time series in RTS.}
 
 \item{D}{is a distance matrix of all ditances. This should be entered by the user}
 }
 \value{
-RTS new series reconstructed
+returns an object of class "ts", containing the reconstructed time series associate to RTS.positions
 }
 \description{
 This function aproximate by interpolation the values of a time series (unknonw), based in the values of near (geographically) time series.

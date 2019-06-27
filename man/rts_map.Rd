@@ -2,7 +2,7 @@
 % Please edit documentation in R/rts_map.R
 \name{rts_map}
 \alias{rts_map}
-\title{This function build news tieme series through seires series established by the user}
+\title{Map representation of Geographical Time Series}
 \usage{
 rts_map(positions.TS, positions.RTS, scale = 1, weights.TS = NULL,
   weights.RTS = NULL, names.TS = NULL, names.RTS = NULL)
@@ -25,8 +25,8 @@ rts_map(positions.TS, positions.RTS, scale = 1, weights.TS = NULL,
 \item{RTS}{is a ts object}
 }
 \value{
-map is a leaflet map of points
+returns a object of class "leaflet", that contain a animated map with points that represents the time series in it's geographical positions
 }
 \description{
-This function build news tieme series through seires series established by the user
+This function build an dynamic map, which represents the geographical time series
 }
