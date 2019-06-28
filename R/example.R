@@ -7,6 +7,7 @@ source("R/rts_distrib.R")
 source("R/rts_plot.R")
 source("R/rts_plotGroup.R")
 source("R/rts_plotClean.R")
+source("R/rts_map.R")
 
 library(knitr)
 library(roxygen2)

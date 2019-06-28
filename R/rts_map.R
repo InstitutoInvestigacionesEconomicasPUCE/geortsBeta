@@ -11,7 +11,6 @@
 #' @return returns a object of class "leaflet", that contain a animated map with points that represents the time series in it's geographical positions
 #' @import dplyr
 #' @import leaflet
-#' @import highcharter
 #' @export
 
 rts_map = function(positions.TS,positions.RTS,scale=1,weights.TS=NULL,weights.RTS=NULL,names.TS=NULL,names.RTS=NULL){
@@ -37,7 +36,7 @@ rts_map = function(positions.TS,positions.RTS,scale=1,weights.TS=NULL,weights.RT
                stroke = T
     )
 
-  map
+  # map
   return(map)
 }
 
