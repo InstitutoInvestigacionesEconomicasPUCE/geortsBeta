@@ -46,17 +46,17 @@ devtools::install_github("InstitutoInvestigacionesEconomicasPUCE/GeoRTS")
 
 First we need to carge the data, so we use:
 
-```{r,eval=F}
+```{r,eval=T}
 library(GeoRTS)
 library(gridExtra)
-data(geoRTS)
+data(rts)
 ```
 
 Then we have in our environment five new objects: `TS` , `positions.TS` , `weights.TS` , `positions.RTS` , `weights.RTS`
 
 
 
-```{r,echo=FALSE, message=FALSE, warning=FALSE}
+```{r,echo=FALSE, eval=FALSE, message=FALSE, warning=FALSE}
 library(stlplus)
 library(dplyr)
 library(ggplot2)
