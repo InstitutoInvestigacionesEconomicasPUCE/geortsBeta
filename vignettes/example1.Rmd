@@ -1,0 +1,121 @@
+---
+title: "Introduction for the GeoRTS Package"
+author: "Cristian Pachacama"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(knitr)
+```
+
+
+
+## **Overview**
+
+The GeoRTS package provides a set of tools for reconstruction (by interpolation) of geographical time series
+
+
+## **Installation**
+
+Install the stable version from [CRAN](https://CRAN.R-project.org/package=GeoRTS):
+
+```{r message=FALSE, warning=FALSE, eval=FALSE, echo=TRUE}
+install.packages("GeoRTS")
+```
+
+
+or install the development version from [Github](https://github.com/InstitutoInvestigacionesEconomicasPUCE/GeoRTS):
+
+```{r message=FALSE, warning=FALSE, eval=FALSE, echo=TRUE}
+# install.packages("devtools")
+devtools::install_github("InstitutoInvestigacionesEconomicasPUCE/GeoRTS")
+```
+
+## **Key Features**
+
+### Cleaning of time series
+
+First we need to carge the data, so we use:
+
+```{r,eval=F}
+library(GeoRTS)
+library(gridExtra)
+data(geoRTS)
+```
+
+Then we have in our environment five new objects: `TS` , `positions.TS` , `weights.TS` , `positions.RTS` , `weights.RTS`
+
+
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+library(stlplus)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(gridExtra)
+library(leaflet)
+library(highcharter)
+load(file="func_borr.RData")
+load(file="rts.RData")
+
+```
+
+
+Where `TS` is a multivariate "ts" object, which has missing values:
+
+```{r}
+kable(TS[10:25,])
+```
+
+Then applyinng `rts_clean` function to `TS`, by consider the parameter of seasonality 12: 
+
+```{r,eval=T, message=FALSE, warning=FALSE}
+TS_clean = rts_clean(TS,seasonality = 12)
+kable(TS_clean[10:25,])
+```
+
+Using the `rts_plotClean` we can plot the original and cleaned function:
+
+```{r, message=FALSE, warning=FALSE,fig.align="center"}
+pl = list()
+for (i in seq(dim(TS)[2])) {
+  pl[[i]] = rts_plotClean(TS,i)
+}
+
+grid.arrange(grobs=pl,nrow=dim(TS)[2])
+```
+
+
+### Reconstruction of time series
+
+To reconstruct (by IDW) unknownn data of time series associated to `positions.RTS` (latitude and longitud in meters) we use `geoRTS` function, that consider an aproximation based in convex combination of original time series in `TS`, considering the distance between `TS` given by `positions.TS`, also it could be consider some factors as `weight.TS` related with the local geographical influence of time series.
+
+
+```{r}
+RTS = geoRts(TS_clean,positions.TS,weights.TS,positions.RTS,weights.RTS)
+kable(RTS[10:25,])
+```
+
+
+### Plot the RTS data
+
+Then we could plot both series (original and reconstructed) with the function `rts_plotGroup`
+
+```{r,fig.align="center"}
+rts_plotGroup(TS_clean,RTS)
+```
+
+Finally we could represent the date in a map with function `rts_map`
+
+```{r,fig.align="center"}
+rts_map(positions.TS,positions.RTS,scale=10^4,weights.TS,weights.RTS)
+```

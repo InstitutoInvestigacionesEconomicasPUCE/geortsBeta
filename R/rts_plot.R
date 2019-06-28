@@ -34,6 +34,6 @@ rts_plot = function(TS, n_variable=1){
       axis.text.x=element_text(size = 6 , angle=90),
       axis.text.y=element_text(size = 6 )
     )
-  plot(p1)
+  # plot(p1)
   return(p1)
 }

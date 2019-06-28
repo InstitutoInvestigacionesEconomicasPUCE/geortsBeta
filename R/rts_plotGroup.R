@@ -37,7 +37,7 @@ rts_plotGroup=function(TS,RTS){
     # geom_point(color="grey") +
     scale_color_grey(start = 0.1, end = 0.1, na.value= "red") +
     theme_minimal()
-  plot(p1)
+  # plot(p1)
 
   return(p1)
 }

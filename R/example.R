@@ -8,6 +8,18 @@ source("R/rts_plot.R")
 source("R/rts_plotGroup.R")
 source("R/rts_plotClean.R")
 
+library(knitr)
+library(roxygen2)
+library(devtools)
+library(stlplus)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(gridExtra)
+library(leaflet)
+library(highcharter)
+
+
 set.seed(3)
 # Tenemos m series conocidas
 m = 3
@@ -30,6 +42,10 @@ positions.RTS = data.frame(lon = rnorm(n,0,10),lat=rnorm(n,30,10))
 weights.RTS = round(runif(n,5,15))
 
 
+# save(TS,positions.TS,weights.TS,
+#      positions.RTS,weights.RTS,
+#      file="./data/rts.RData")
+
 RTS = geoRts(TS,positions.TS,weights.TS,positions.RTS,weights.RTS)
 
 #Grafico de Series    ====================
@@ -44,4 +60,7 @@ for (i in seq(dim(TS)[2])) {
 }
 
 grid.arrange(grobs=pl,nrow=dim(TS)[2])
+
+# 3. Mapa ============================
+rts_map(positions.TS,positions.RTS,scale=10^4,weights.TS,weights.RTS)
 

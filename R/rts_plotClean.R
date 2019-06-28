@@ -29,7 +29,7 @@ rts_plotClean=function(TS, k=1 ){
     geom_line(data = x , size = 1
     ) +
     theme_minimal()
-  plot(p1)
+  # plot(p1)
 
   return(p1)
 }
