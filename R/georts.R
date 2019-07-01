@@ -14,6 +14,9 @@ geoRts = function(TS,positions.TS,weights.TS = NULL,positions.RTS,weights.RTS=NU
   n = dim(TS)[2]
   # Distances Matrix
   positions = rbind(positions.TS,positions.RTS)
+  if(is.null(weights.TS )) weights.TS = rep(1,dim(positions.TS)[1])
+  if(is.null(weights.RTS )) weights.RTS = rep(1,dim(positionsRTS)[1])
+
   weights = c(weights.TS,weights.RTS)
 
   # Gravity Flow Matrix
