@@ -1,4 +1,10 @@
-# Example GeoRTS ------------------------
+#' @title Data Example for GeoRTS (Geo-reconstruction of Time Series)
+#' @description This function generates a group of random data to use geoRts function.
+#' @param m.ts is a interger that represents the number of original time series "TS",  \code{m.ts=dim(TS)[2]}
+#' @param nx.rts is a interger that represents the number of points of longitude \code{log}(new positions) of the grid.
+#' @param ny.rts is a interger that represents the number of points of latitude \code{lat}(new positions) of the grid.
+#' @return returns a list containing the original time series "TS0" (randomly generated), the positions and weights associated  with the original series (""positions.TS0" and "weights.TS0") and finally return tha positions of the reconstruction of time series "positions.RTS0".
+#' @export
 
 rts_data_example = function(m.ts = 8, nx.rts = 5,ny.rts = 5){
 	m=m.ts
