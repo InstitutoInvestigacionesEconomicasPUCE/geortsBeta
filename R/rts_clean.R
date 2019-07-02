@@ -2,11 +2,11 @@
 #' @description This function clean a time series with missing values.
 #' @param TS is a data frame of time series
 #' @param seasonality either the character string "periodic" or the span (in lags) of the loess window for seasonal extraction
+#' @import stlplus
 #' @export
 
 
 rts_clean=function(TS, seasonality=12){
-  require(stlplus)
   n=dim(TS)[2]
   # k=1
   lambda=1
@@ -15,10 +15,8 @@ rts_clean=function(TS, seasonality=12){
     TSk=TS[,k]
 
     if(sum(is.na(TS))>0){
-
       descom= stlplus::stlplus(TSk,s.window = seasonality)
 
-      # X=descom$data$raw
       Tren=descom$data$trend
       Seas=descom$data$seasonal
       Res=descom$data$remainder
@@ -27,7 +25,6 @@ rts_clean=function(TS, seasonality=12){
       TScleank=Tren+Seas+Res
 
     } else {
-
       TScleank=TSk
     }
     TSclean[,k] = TScleank
