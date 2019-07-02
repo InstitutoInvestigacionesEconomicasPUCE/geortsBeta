@@ -2,6 +2,7 @@
 
 export(geoRts)
 export(rts_clean)
+export(rts_data_example)
 export(rts_distrib)
 export(rts_map)
 export(rts_plot)
