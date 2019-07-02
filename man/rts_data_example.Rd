@@ -7,8 +7,6 @@
 rts_data_example(m.ts = 8, nx.rts = 5, ny.rts = 5)
 }
 \arguments{
-\item{m.ts}{is a interger that represents the number of original time series "TS",  \code{m.ts=dim(TS)[2]}}
-
 \item{nx.rts}{is a interger that represents the number of points of longitude \code{log}(new positions) of the grid.}
 
 \item{ny.rts}{is a interger that represents the number of points of latitude \code{lat}(new positions) of the grid.}

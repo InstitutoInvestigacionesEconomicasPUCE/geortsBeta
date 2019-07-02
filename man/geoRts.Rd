@@ -4,21 +4,26 @@
 \alias{geoRts}
 \title{Geo-reconstruction of Time Series}
 \usage{
-geoRts(TS, positions.TS, weights.TS = NULL, positions.RTS,
-  weights.RTS = NULL, D = NULL)
+geoRts(TS, positions.TS, weights.TS = NULL, positions.RTS = NULL,
+  weights.RTS = NULL, D = NULL, nx.rts = 10 * dim(TS)[2],
+  ny.rts = 10 * dim(TS)[2])
 }
 \arguments{
 \item{TS}{is a object of class "ts" (time series), with \code{ncol()>2}}
 
-\item{positions.TS}{is a data frame that containing longitude and latitude asociated to time series in TS}
+\item{positions.TS}{is a data frame that containing longitude and latitude asociated to time series in TS, each distinct of}
 
 \item{weights.TS}{is a data frame that containing weights (of influence) of time series in TS.}
 
-\item{positions.RTS}{is a data frame that containing values of longitude and latitude about each serie for build.}
+\item{positions.RTS}{is a data frame that containing values of longitude and latitude of each time serie to be reconstructed. If \code{positions.RTS=NULL}, then \code{positions.RTS} is calculated as a grid of points into a square that contains all points of \code{positions.TS}.}
 
 \item{weights.RTS}{is a data frame that containing weights (of influence) of time series in RTS.}
 
-\item{D}{is a distance matrix of all ditances. This should be entered by the user}
+\item{D}{is a distance (or disimilarity) matrix between Time Series. If positions.TS is defined and \code{D=NULL} then D is calculated as the euclidean distance matrix between positions (i.e.  between rows of \code{positions.TS}). If \code{positions.TS=NULL}, D must be defined, and then \code{positions.TS} is calculated (with not a geographical representation) using Multidimensional Scaling (MDS).}
+
+\item{nx.rts}{is a interger that represents the number of points of longitude \code{log}(new positions) of the grid.}
+
+\item{ny.rts}{is a interger that represents the number of points of latitude \code{lat}(new positions) of the grid.}
 }
 \value{
 returns an object of class "ts", containing the reconstructed time series associate to RTS.positions
