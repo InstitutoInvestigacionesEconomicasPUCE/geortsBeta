@@ -23,16 +23,30 @@ devtools::install_github("InstitutoInvestigacionesEconomicasPUCE/GeoRTS")
 Functions
 ----------------
 
-plotClean: This function generates a plot with the original and reconstructed series
-plotGrupThis: function generates a plot with the original and reconstructed series
+rts_plotClean 
+----------------
+This function generates a plot with the original and reconstructed series
+
 <img src="man/figures/rearme_img1.png" align="center"/>
+
+rts_plotGrup 
+----------------
+This function generates a plot with the original and reconstructed series
+
 
 <img src="man/figures/rearme_img2.png" align="center"/>
 
+rts_map
+----------------
+This function build an dynamic map, which represents the geographical time series
 
+Static Maps
+----------------
 <img src="man/figures/rearme_img3.png" align="center"/>
+
 <img src="man/figures/rearme_img4.png" align="center"/>
 
-
+Moving Maps
+----------------
 <img src="man/figures/rearme_img5.gif" align="right"/></img>
 <img src="man/figures/rearme_img6.gif" align="right"/>
