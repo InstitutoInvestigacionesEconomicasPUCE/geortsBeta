@@ -18,7 +18,6 @@ geoRts = function(TS,positions.TS,weights.TS = NULL,positions.RTS=NULL,weights.R
   if(n>=2){
     #
     if(is.null(weights.TS )) weights.TS = rep(1,dim(positions.TS)[1])
-    if(is.null(weights.RTS )) weights.RTS = rep(1,dim(positions.RTS)[1])
 
     if(is.null(positions.TS)){
       if(is.null(D)){
@@ -43,6 +42,8 @@ geoRts = function(TS,positions.TS,weights.TS = NULL,positions.RTS=NULL,weights.R
                                            length.out = ny.rts))
       positions.RTS = data.frame(positions.RTS)
     }
+
+    if(is.null(weights.RTS )) weights.RTS = rep(1,dim(positions.RTS)[1])
 
     positions = rbind(positions.TS,positions.RTS)
     weights = c(weights.TS,weights.RTS)
