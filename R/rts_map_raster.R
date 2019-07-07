@@ -1,12 +1,14 @@
 #' @title Map representation of Geographical Time Series (on a grid)
 #' @description This function build an dynamic map, which represents the geographical time series on a grid
-#' @param TS is a ts object
-#' @param positions.TS is a data frame that contain longitude and latitude of time series
-#' @param k ..................
-#' @param weights.TS is a vector that contain the weights of positions
-#' @param names.TS is a vector that contain of names of positions
+#' @inheritParams geoRts
+#' @param type Typo of plot to be shown, available options are: \code{"2D","3D","2D+3D", "2D-dynamic","3D-dynamic"}
+#' @param k Represent the number of time serie (column of \code{TS}). Is used only if \code{type} parameter is set as one of following options: \code{"2D","3D"} or \code{"2D+3D"}
+#' @param fpss is the number of frames per second. Is only used for types: \code{"2D-dynamic"} or \code{"3D-dynamic"}
+#' @param windowsize a vector with width, and height for
+#' @param save.plot Set as \code {TRUE} for save the plot
+#' @param file.name A character for name of saved plot
+#' @param ... Arguments passed to \code{geoRts()} function, or \code{plot_gg()} from \code{rayshader} package
 #' @return returns a object of class "leaflet", that contain a animated map with points that represents the time series in it's geographical positions
-#' @param type.................
 #' @import gganimate
 #' @import rayshader
 #' @import tidyverse
@@ -17,7 +19,7 @@
 # rts_map_raster = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS=NULL,weights.RTS=NULL,type = c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"), k=1, save.plot=TRUE,file.name="plot"){
 
 
-rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"), k=1, fpss=5, windowsize = c(400, 650) ,save.plot=TRUE,file.name="plot", ...){
+rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"), k=1, fpss=5, windowsize = c(700, 700) ,save.plot=TRUE,file.name="plot", ...){
   # clean Time Series
   type=type[match(type, c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"))]
 
@@ -38,11 +40,11 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
 
-             pl = ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
-               geom_raster(interpolate = TRUE) + theme_minimal()+
-               geom_point(data=positions.TS,aes(lon,lat,size=w),
-                          color='grey',shape=1,show.legend = F)+
-               scale_fill_viridis_c(option = "inferno")
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+               ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
+               ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
+                                   color='grey',shape=1,show.legend = F)+
+               ggplot2::scale_fill_viridis_c(option = "inferno")
            },
 
            "2D-dynamic" = {
@@ -73,16 +75,17 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
 
              # grafico gganimate ....................................
 
-             pl = ggplot(data=positions.RTSAn,aes(lon, lat, fill = Xt)) +
-               geom_raster(interpolate = TRUE) + theme_minimal()+
-               geom_point(data=positions.TSAn,aes(lon,lat,size=w),
-                          color='grey',shape=1,show.legend = F)+
-               scale_fill_viridis_c(option = "inferno")
+             pl = ggplot2::ggplot(data=positions.RTSAn,aes(lon, lat, fill = Xt)) +
+               ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
+               ggplot2::geom_point(data=positions.TSAn,aes(lon,lat,size=w),
+                                   color='grey',shape=1,show.legend = F)+
+               ggplot2::scale_fill_viridis_c(option = "inferno")
 
-             pl = pl + transition_time(Time)  +
-               labs(title = "Fecha: {frame_time}")
+             pl = pl + gganimate::transition_time(Time)  +
+               labs(title = "Date: {frame_time}")
+             pl = gganimate::animate(pl,fps=fpss)
 
-             if(save.plot) anim_save(filename = paste0(file.name,".gif"))
+             if(save.plot) gganimate::anim_save(animation = pl,filename = paste0(file.name,".gif"))
            },
 
            "3D"={
@@ -97,12 +100,12 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
 
-             pl = ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
-               geom_raster(interpolate = TRUE) + theme_minimal()+
-               geom_point(data=positions.TS,aes(lon,lat,size=w),
-                          color='grey',shape=1,show.legend = F)+
-               scale_fill_viridis_c(option = "inferno")
-             pl = plot_gg(pl,...)
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+               ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
+               ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
+                                   color='grey',shape=1,show.legend = F)+
+               ggplot2::scale_fill_viridis_c(option = "inferno")
+             pl = rayshader::plot_gg(pl,windowsize=windowsize,...)
            },
 
            "2D+3D"={
@@ -117,21 +120,22 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
 
-             pl = ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
-               geom_raster(interpolate = TRUE) + theme_minimal()+
-               geom_point(data=positions.TS,aes(lon,lat,size=w),
-                          color='grey',shape=1,show.legend = F)+
-               scale_fill_viridis_c(option = "inferno")
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+               ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
+               ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
+                                   color='grey',shape=1,show.legend = F)+
+               ggplot2::scale_fill_viridis_c(option = "inferno")
              par(mfrow = c(1, 2))
-             plot_gg(pl, raytrace = FALSE, preview = TRUE,...)
-             plot_gg(pl,...)
+             rayshader::plot_gg(pl, raytrace = FALSE, preview = TRUE,...)
+             rayshader::plot_gg(pl,...)
              # render_camera()
-             render_snapshot(clear = FALSE)
+             rayshader::render_snapshot(clear = FALSE)
              par(mfrow = c(1, 1))
 
            },
 
            "3D-dynamic"={
+             warning("ImageMagick must be installed before using '3D-dynamic' option. Create animation could take several minutes, depends on 'windowsize' values.")
              exproot <- 'exports.tmp'
              dir.create(exproot)
              # animation settings
@@ -163,18 +167,19 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
                                xout=frames)$y
 
              # plot defined angle vectors..............
-             ggplot(tibble(Frame=frames,
+             ggplot2::ggplot(dplyr::tibble(Frame=frames,
                            Theta=thetas,
                            Phi=phis,
                            Azimuth=sangles,
                            Elevation=eangles) %>%
-                      gather('Type','Angle',2:5)) +
-               geom_path(aes(Frame,Angle,color=Type),size=1) +
-               facet_wrap(~Type, scales='free') +
-               guides(color='none')
+                      tidyr::gather('Type','Angle',2:5)) +
+               ggplot2::ggtitle("Angles of 3D Animation") +
+               ggplot2::geom_path(aes(Frame,Angle,color=Type),size=1) +
+               ggplot2::facet_wrap(~Type, scales='free') +
+               ggplot2::guides(color='none')
 
 
-             # Generate PNG frames ........................................................
+             # Generate PNG frames .....................................
 
              if (anitype=='3d'){rgl.open()}
              for (f in frames){
@@ -182,28 +187,28 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
                # get filename of export frame
                fn       <- file.path(exproot,sprintf('%04d.png',f))
 
-               plc = ggplot(data= positions.RTSAn %>% filter(Time == Dates[f]) ,
+               plc = ggplot2::ggplot(data= positions.RTSAn %>% filter(Time == Dates[f]) ,
                             aes(lon, lat, fill = Xt)) +
-                 geom_raster(interpolate = TRUE) +
-                 theme_minimal()+
-                 geom_point(data=positions.TSAn,
+                 ggplot2::geom_raster(interpolate = TRUE) +
+                 ggplot2::theme_minimal()+
+                 ggplot2::geom_point(data=positions.TSAn,
                             aes(lon,lat,size=w),
                             color='grey',shape=1,
                             show.legend = FALSE)+
-                 scale_fill_viridis_c(option = "inferno")
+                 ggplot2::scale_fill_viridis_c(option = "inferno")
 
                #........................................
-               if (anitype=='2d'){
-                 ggsave(fn,curplot, width=maxw, height=maxw*asprat)
-               }
+               # if (anitype=='2d'){
+               #   ggsave(fn,curplot, width=maxw, height=maxw*asprat)
+               # }
                if (anitype=='3d'){
-                 plot_gg(plc, width=maxw, height=maxw*asprat,
-                         height_aes='fill', multicore=T, scale=150,
-                         raytrace=rays, sunangle=sangles[f],
-                         anglebreaks=seq(eangles[f]-2,eangles[f]+2,0.25),
-                         lineantialias=T, windowsize=c(300,250),
-                         theta=thetas[f], phi=phis[f], zoom=0.65, fov=42)
-                 render_snapshot(filename=fn, clear=T)
+                 pl=rayshader::plot_gg(plc, width = maxw, height= maxw*asprat,
+                            height_aes = 'fill', multicore=T, scale=150,
+                            raytrace=rays, sunangle = sangles[f],
+                            anglebreaks = seq(eangles[f]-2,eangles[f]+2,0.25),
+                            lineantialias = T, windowsize = windowsize,
+                            theta=thetas[f], phi=phis[f], zoom=0.65, fov=42)
+                 rayshader::render_snapshot(filename=fn, clear=T)
                }
              }
              if (anitype=='3d'){rgl.close()}
@@ -214,10 +219,11 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
 
              #..................
              archiv %>%
-               map(image_read) %>% # reads each path file
-               image_join() %>% # joins image
-               image_animate(fps=fpss) %>% # animates, can opt for number of loops
-               image_write(paste0(file.name,".gif"))
+               purrr::map(image_read) %>% # reads each path file
+               magick::image_join() %>% # joins image
+               magick::image_animate(fps=fpss) %>% # animates, can opt for number of loops
+               magick::image_write(paste0(file.name,".gif"))
+             if(!save.plot) unlink(exproot,recursive = TRUE)
            }
 
     )
