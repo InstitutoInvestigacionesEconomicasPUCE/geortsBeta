@@ -8,9 +8,9 @@
 #' @import grDevices
 #' @export
 
-rts_hull_grid = function(positions.TS,nx.rts=10*dim(positions.TS)[1], ny.rts=10*dim(positions.TS)[1], type.grid = c("convex", "square")) {
+rts_hull_grid = function(positions.TS,nx.rts=10*dim(positions.TS)[1], ny.rts=10*dim(positions.TS)[1], type.grid = c("square","convex")) {
 
-  type.grid=type.grid[match(type.grid, c("convex", "square"))]
+  type.grid=type.grid[match(type.grid, c("square","convex"))]
 
   if(is.na(type.grid)&&is.na(type.grid)){
     print("Error: Choose a suitable value for 'type.grid' argument, available options are 'convex', and 'square'")

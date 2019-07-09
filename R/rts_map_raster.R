@@ -18,7 +18,7 @@
 #' @import magick
 #' @export
 
-rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"), k=1, fpss=5, windowsize = c(700, 700) ,save.plot=TRUE,file.name="plot", ...){
+rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"), k=1, fpss=5, windowsize = c(700, 700) ,save.plot=TRUE,file.name="plot",nx.grid=10*dim(positions.TS)[1], ny.grid=10*dim(positions.TS)[1], ...){
   # clean Time Series
   type=type[match(type, c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"))]
 
@@ -29,11 +29,11 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
     switch(type,
            "2D" = {
              TS = rts_clean(TS)
-             if(is.null(RTS)){
-               RTS = geoRts(TS = TS,
-                            positions.TS = positions.TS,
-                            weights.TS = weights.TS,...)
-             }
+             positions.RTS = rts_hull_grid(positions.TS,nx.rts=nx.grid,ny.rts = ny.grid)
+             RTS = geoRts(TS = TS,
+                          positions.TS = positions.TS,
+                          weights.TS = weights.TS,
+                          positions.RTS = positions.RTS,...)
              positions.RTS$xk = as.numeric(RTS[k,])
              positions.RTS$w = 1
              positions.TS$xk = as.numeric(TS[k,])
