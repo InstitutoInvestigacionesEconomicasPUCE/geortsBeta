@@ -102,7 +102,7 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
                ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
                ggplot2::scale_fill_viridis_c(option = "inferno")
-             pl = rayshader::plot_gg(pl,windowsize=windowsize,...)
+             rayshader::plot_gg(pl,windowsize=windowsize,...)
            },
 
            "2D+3D"={
@@ -199,7 +199,7 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
                #   ggsave(fn,curplot, width=maxw, height=maxw*asprat)
                # }
                if (anitype=='3d'){
-                 pl=rayshader::plot_gg(plc, width = maxw, height= maxw*asprat,
+                 rayshader::plot_gg(plc, width = maxw, height= maxw*asprat,
                             height_aes = 'fill', multicore=T, scale=150,
                             raytrace=rays, sunangle = sangles[f],
                             anglebreaks = seq(eangles[f]-2,eangles[f]+2,0.25),
