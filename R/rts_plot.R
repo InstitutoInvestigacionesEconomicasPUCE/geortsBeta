@@ -3,11 +3,10 @@
 #' @param TS is a ts object with \code{ncol()>=2}
 #' @param n_variable the column position of time serie in \code{TS} that will be plot.
 #' @return ggplot object with graphic of time serie
+#' @import ggplot2
 #' @export
 
 rts_plot = function(TS, n_variable=1){
-
-  require(ggplot2)
 
   serieDF = data.frame(TS)
   # serieDF = TS

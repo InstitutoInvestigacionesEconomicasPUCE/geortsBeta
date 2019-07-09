@@ -28,11 +28,11 @@ rts_map_point(TS, positions.TS, RTS, positions.RTS, weights.TS = NULL,
 
 \item{windowsize}{a vector with width, and height for}
 
-\item{save.plot}{Set as \code {TRUE} for save the plot}
+\item{save.plot}{Set as TRUE for save the plot}
 
 \item{file.name}{A character for name of saved plot}
 
-\item{...}{Arguments passed to \code{geoRts()} function, or \code{plot_gg()} from \code{rayshader} package}
+\item{...}{Arguments passed to \code{geoRts} or \code{plot_gg} function, from  \code{rayshader} package}
 }
 \value{
 returns a object of class "leaflet", that contain a animated map with points that represents the time series in it's geographical positions

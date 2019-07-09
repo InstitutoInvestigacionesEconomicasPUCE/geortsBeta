@@ -12,6 +12,8 @@
 #' @import gganimate
 #' @import rayshader
 #' @import tidyverse
+#' @import dplyr
+#' @import ggplot2
 #' @import rgl
 #' @import magick
 #' @export
@@ -51,7 +53,7 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                             positions.TS = positions.TS,
                             weights.TS = weights.TS,...)
              }
-             positions.RTS$w = 1
+             positions.RTS$w = weights.RTS
              positions.TS$w = weights.TS
 
              positions.TSAn = data.frame()
@@ -72,11 +74,10 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
 
              # grafico gganimate ....................................
 
-             pl = ggplot2::ggplot(data=positions.RTSAn,aes(lon, lat, fill = Xt)) +
-               ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
+             pl = ggplot2::ggplot(data=positions.RTSAn,aes(lon, lat, colour = Xt,size=w)) +
+               ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TSAn,aes(lon,lat,size=w),
-                                   color='grey',shape=1,show.legend = F)+
-               ggplot2::scale_fill_viridis_c(option = "inferno")
+                                   color='grey',shape=1,show.legend = F)
 
              pl = pl + gganimate::transition_time(Time)  +
                labs(title = "Date: {frame_time}")
@@ -93,15 +94,14 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                             weights.TS = weights.TS,...)
              }
              positions.RTS$xk = as.numeric(RTS[k,])
-             positions.RTS$w = 1
+             positions.RTS$w = weights.RTS
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
 
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
-               ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, colour = xk,size=w)) +
+               ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
-                                   color='grey',shape=1,show.legend = F)+
-               ggplot2::scale_fill_viridis_c(option = "inferno")
+                                   color='grey',shape=1,show.legend = F)
              pl = rayshader::plot_gg(pl,windowsize=windowsize,...)
            },
 
@@ -113,15 +113,14 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                             weights.TS = weights.TS,...)
              }
              positions.RTS$xk = as.numeric(RTS[k,])
-             positions.RTS$w = 1
+             positions.RTS$w = weights.RTS
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
 
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
-               ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, colour = xk, size=w)) +
+               ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
-                                   color='grey',shape=1,show.legend = F)+
-               ggplot2::scale_fill_viridis_c(option = "inferno")
+                                   color='grey',shape=1,show.legend = F)
              par(mfrow = c(1, 2))
              rayshader::plot_gg(pl, raytrace = FALSE, preview = TRUE,...)
              rayshader::plot_gg(pl,...)
@@ -164,7 +163,7 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                                xout=frames)$y
 
              # plot defined angle vectors..............
-             ggplot2::ggplot(dplyr::tibble(Frame=frames,
+             P.angle =ggplot2::ggplot(dplyr::tibble(Frame=frames,
                                            Theta=thetas,
                                            Phi=phis,
                                            Azimuth=sangles,
@@ -175,6 +174,7 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                ggplot2::facet_wrap(~Type, scales='free') +
                ggplot2::guides(color='none')
 
+             plot(P.angle)
 
              # Generate PNG frames .....................................
 
@@ -185,14 +185,13 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                fn       <- file.path(exproot,sprintf('%04d.png',f))
 
                plc = ggplot2::ggplot(data= positions.RTSAn %>% filter(Time == Dates[f]) ,
-                                     aes(lon, lat, fill = Xt)) +
-                 ggplot2::geom_raster(interpolate = TRUE) +
+                                     aes(lon, lat, colour = Xt,size=w)) +
+                 ggplot2::geom_point() +
                  ggplot2::theme_minimal()+
                  ggplot2::geom_point(data=positions.TSAn,
                                      aes(lon,lat,size=w),
                                      color='grey',shape=1,
-                                     show.legend = FALSE)+
-                 ggplot2::scale_fill_viridis_c(option = "inferno")
+                                     show.legend = FALSE)
 
                #........................................
                # if (anitype=='2d'){

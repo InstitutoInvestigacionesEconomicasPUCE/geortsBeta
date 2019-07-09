@@ -4,6 +4,7 @@
 #' @param n is the number of observations to be simulated
 #' @return a simulation of empirical distribucion of Xrand
 #' @export
+
 rts_simu = function(Xrand,n=1){
   Xrand = Xrand[!is.na(Xrand)]
   if(n>0){

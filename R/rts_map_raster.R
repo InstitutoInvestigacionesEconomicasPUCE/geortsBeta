@@ -7,7 +7,7 @@
 #' @param windowsize a vector with width, and height for
 #' @param save.plot Set as TRUE for save the plot
 #' @param file.name A character for name of saved plot
-#' @param ... Arguments passed to \code{geoRts()} function, or \code{plot_gg()} from \code{rayshader} package
+#' @param ... Arguments passed to \code{geoRts} or \code{plot_gg} function, from  \code{rayshader} package
 #' @return returns a object of class "leaflet", that contain a animated map with points that represents the time series in it's geographical positions
 #' @import gganimate
 #' @import rayshader
