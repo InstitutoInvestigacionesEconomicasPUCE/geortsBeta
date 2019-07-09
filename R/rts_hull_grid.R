@@ -1,4 +1,4 @@
-#' @title Create a hull grid of points 
+#' @title Create a hull grid of points
 #' @description This function Create a hull grid based on it's positions (\code{positions.TS})
 #' @param positions.TS is a data frame that containing longitude (\code{lon}) and latitude (\code{lat}) asociated to time series in TS
 #' @param type.grid Typo of grid to build, available options are: \code{"convex","square"}
@@ -8,10 +8,10 @@
 #' @import grDevices
 #' @export
 
-rts_hull_grid = function(positions.TS,nx.rts=10*dim(TS)[2], ny.rts=10*dim(TS)[2], type.grid = c("convex", "square")) {
-  
+rts_hull_grid = function(positions.TS,nx.rts=10*dim(positions.TS)[1], ny.rts=10*dim(positions.TS)[1], type.grid = c("convex", "square")) {
+
   type.grid=type.grid[match(type.grid, c("convex", "square"))]
-  
+
   if(is.na(type.grid)&&is.na(type.grid)){
     print("Error: Choose a suitable value for 'type.grid' argument, available options are 'convex', and 'square'")
   }else{
@@ -22,7 +22,7 @@ rts_hull_grid = function(positions.TS,nx.rts=10*dim(TS)[2], ny.rts=10*dim(TS)[2]
       n.grid = nx.rts*ny.rts
       convexInd = grDevices::chull(positions.TS)
       convexInd = c(convexInd, convexInd[1])
-      positions.RTS = sp::Polygon(coords =  as.matrix(positions.TS)[convexInd, ]) 
+      positions.RTS = sp::Polygon(coords =  as.matrix(positions.TS)[convexInd, ])
       positions.RTS = data.frame(sp::spsample(positions.RTS, n.grid, type = "regular"))
       names(positions.RTS) = c("lon","lat")
     },
@@ -39,5 +39,5 @@ rts_hull_grid = function(positions.TS,nx.rts=10*dim(TS)[2], ny.rts=10*dim(TS)[2]
     })
   }
   return(positions.RTS)
-  
+
 }
