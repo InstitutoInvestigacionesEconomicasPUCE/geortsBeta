@@ -111,7 +111,7 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)
-             rayshader::plot_gg(pl,windowsize=windowsize,...)
+             pl = rayshader::plot_gg(pl,windowsize=windowsize,...)
            },
 
            "2D+3D"={
@@ -207,7 +207,7 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                #   ggsave(fn,curplot, width=maxw, height=maxw*asprat)
                # }
                if (anitype=='3d'){
-                 rayshader::plot_gg(plc, width = maxw, height= maxw*asprat,
+                 pl=rayshader::plot_gg(plc, width = maxw, height= maxw*asprat,
                                        height_aes = 'fill', multicore=T, scale=150,
                                        raytrace=rays, sunangle = sangles[f],
                                        anglebreaks = seq(eangles[f]-2,eangles[f]+2,0.25),
