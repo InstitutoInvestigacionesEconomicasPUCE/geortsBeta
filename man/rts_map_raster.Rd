@@ -7,7 +7,8 @@
 rts_map_raster(TS, positions.TS, weights.TS = NULL, type = c("2D",
   "3D", "2D+3D", "2D-dynamic", "3D-dynamic"), k = 1, fpss = 5,
   windowsize = c(700, 700), save.plot = TRUE, file.name = "plot",
-  ...)
+  nx.grid = 10 * dim(positions.TS)[1], ny.grid = 10 *
+  dim(positions.TS)[1], ...)
 }
 \arguments{
 \item{TS}{is a object of class "ts" (time series), with \code{ncol()>2}}

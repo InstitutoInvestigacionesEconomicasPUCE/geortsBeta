@@ -4,8 +4,9 @@
 \alias{rts_hull_grid}
 \title{Create a hull grid of points}
 \usage{
-rts_hull_grid(positions.TS, nx.rts = 10 * dim(TS)[2], ny.rts = 10 *
-  dim(TS)[2], type.grid = c("convex", "square"))
+rts_hull_grid(positions.TS, nx.rts = 10 * dim(positions.TS)[1],
+  ny.rts = 10 * dim(positions.TS)[1], type.grid = c("square",
+  "convex"))
 }
 \arguments{
 \item{positions.TS}{is a data frame that containing longitude (\code{lon}) and latitude (\code{lat}) asociated to time series in TS}
