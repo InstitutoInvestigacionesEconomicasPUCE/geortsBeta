@@ -12,13 +12,16 @@ Author: Cristian Pachacama [aut,cre]
 Maintainer: Cristian Pachacama <cdpachacama@puce.edu.ec>
 Depends: R (>= 3.5.1)
 Imports: 
-    stlplus (>= 0.5.1), 
-    dplyr, 
-    ggplot2, 
+    stlplus (>= 0.5.1),
+    smacof,
+    tidyverse (>= 1.2.1),
+    dplyr,
+    ggplot2,
     reshape2 (>= 1.4.3),
     gridExtra (>= 2.3),
-    leaflet (>= 2.0.2),
-    highcharter (>= 0.7.0)
+    magick (>= 2.0),
+    rayshader (>= 0.10.1),
+    rgl (>= 0.99.16)
 Description: This package is used for the reconstruction of Geographical 
     Time Series with the use of the functions
 License: GPL-3
