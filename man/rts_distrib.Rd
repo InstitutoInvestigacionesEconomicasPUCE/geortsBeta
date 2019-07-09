@@ -9,11 +9,11 @@ rts_distrib(Xrand, x = Xrand)
 \arguments{
 \item{Xrand}{is a vector with observations of a random variable}
 
-\item{x}{is a vector which will be evaluate the Empirical Distribution function based on \code{Xrand}}
+\item{x}{is a vector which will be evaluate the Empirical Distribution Function based on \code{Xrand}}
 }
 \value{
-a vector which contain the values of empirical distribution function evaluated in \code{x}
+a vector which contain the values of Empirical Distribution Function evaluated in \code{x}
 }
 \description{
-It returns the empirical distribution function based on a vector containig observations of a random variable
+This function returns the Empirical Distribution Function based on a vector containig observations of a random variable
 }

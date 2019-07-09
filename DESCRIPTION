@@ -13,7 +13,7 @@ Maintainer: Cristian Pachacama <cdpachacama@puce.edu.ec>
 Depends: R (>= 3.5.1)
 Imports: 
     stlplus (>= 0.5.1),
-    smacof,
+    smacof (>= 1.10-8),
     tidyverse (>= 1.2.1),
     dplyr,
     ggplot2,
@@ -22,9 +22,18 @@ Imports:
     magick (>= 2.0),
     rayshader (>= 0.10.1),
     rgl (>= 0.99.16),
-    gganimate (>= 1.0.3)
-Description: This package is used for the reconstruction of Geographical 
-    Time Series with the use of the functions
+    gganimate (>= 1.0.3),
+    sp (>= 1.3-1),
+    grDevices (>= 3.5.3)
+Description: contains the implementation of methodology created with the objective of 
+    the reconstruction of geographical time series from an interpolation-simulation 
+    model based on IDW (Inverse distance weighted), Multidimensional Scaling (MDS), 
+    STL-Loess (Local Regression ) and Monte Carlo simulation. The package has functions 
+    for cleaning time series with missing values, simulation of stationary processes based 
+    on their empirical distribution, in addition to the interpolation of the values of these 
+    series locally, likewise, it has tools for the visualization of series of time (Images, 
+    png, jpg, pdf, vector)), its spatial (geographical) representation and the combination 
+    of both visualizations in 3D animation format (spacetime).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

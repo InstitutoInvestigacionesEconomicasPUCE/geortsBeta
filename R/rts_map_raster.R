@@ -1,17 +1,19 @@
 #' @title Map representation of Geographical Time Series (on a grid)
 #' @description This function build an dynamic map, which represents the geographical time series on a grid
 #' @inheritParams geoRts
-#' @param type Typo of plot to be shown, available options are: \code{"2D","3D","2D+3D", "2D-dynamic","3D-dynamic"}
+#' @param type is the type of plot to be shown, available options are: \code{"2D","3D","2D+3D", "2D-dynamic","3D-dynamic"}
 #' @param k Represent the number of time serie (column of \code{TS}). Is used only if \code{type} parameter is set as one of following options: \code{"2D","3D"} or \code{"2D+3D"}
 #' @param fpss is the number of frames per second. Is only used for types: \code{"2D-dynamic"} or \code{"3D-dynamic"}
-#' @param windowsize a vector with width, and height for
-#' @param save.plot Set as TRUE for save the plot
-#' @param file.name A character for name of saved plot
+#' @param windowsize is a vector that contain width and height
+#' @param save.plot set as TRUE for save the plot
+#' @param file.name is a character for name of saved plot
 #' @param ... Arguments passed to \code{geoRts} or \code{plot_gg} function, from  \code{rayshader} package
 #' @return returns a object of class "leaflet", that contain a animated map with points that represents the time series in it's geographical positions
 #' @import gganimate
 #' @import rayshader
 #' @import tidyverse
+#' @import dplyr
+#' @import ggplot2
 #' @import rgl
 #' @import magick
 #' @export
@@ -21,7 +23,7 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,type = c("2D","3D","2D
   type=type[match(type, c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"))]
 
   if(is.na(type)&&is.na(type)){
-    print("Error: Choose a suitable value for 'type' argument")
+    print("Error: Choose a suitable value for 'type' argument, available options are '2D', '3D','2D+3D','2D-dynamic',and '3D-dynamic' ")
   }else{
     type = type[1]
     switch(type,

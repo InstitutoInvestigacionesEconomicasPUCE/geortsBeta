@@ -12,21 +12,21 @@ rts_map_raster(TS, positions.TS, weights.TS = NULL, type = c("2D",
 \arguments{
 \item{TS}{is a object of class "ts" (time series), with \code{ncol()>2}}
 
-\item{positions.TS}{is a data frame that containing longitude and latitude asociated to time series in TS, each distinct of}
+\item{positions.TS}{is a data frame that containing longitude and latitude asociated to time series in TS.}
 
 \item{weights.TS}{is a data frame that containing weights (of influence) of time series in TS.}
 
-\item{type}{Typo of plot to be shown, available options are: \code{"2D","3D","2D+3D", "2D-dynamic","3D-dynamic"}}
+\item{type}{is the type of plot to be shown, available options are: \code{"2D","3D","2D+3D", "2D-dynamic","3D-dynamic"}}
 
 \item{k}{Represent the number of time serie (column of \code{TS}). Is used only if \code{type} parameter is set as one of following options: \code{"2D","3D"} or \code{"2D+3D"}}
 
 \item{fpss}{is the number of frames per second. Is only used for types: \code{"2D-dynamic"} or \code{"3D-dynamic"}}
 
-\item{windowsize}{a vector with width, and height for}
+\item{windowsize}{is a vector that contain width and height}
 
-\item{save.plot}{Set as TRUE for save the plot}
+\item{save.plot}{set as TRUE for save the plot}
 
-\item{file.name}{A character for name of saved plot}
+\item{file.name}{is a character for name of saved plot}
 
 \item{...}{Arguments passed to \code{geoRts} or \code{plot_gg} function, from  \code{rayshader} package}
 }

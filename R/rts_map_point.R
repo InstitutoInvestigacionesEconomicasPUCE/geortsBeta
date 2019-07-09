@@ -1,7 +1,7 @@
 #' @title Map representation of Geographical Time Series
 #' @description This function build an dynamic map, which represents the geographical time series on a grid
 #' @inheritParams geoRts
-#' @param type is a type of plot to be shown, available options are: \code{"2D","3D","2D+3D", "2D-dynamic","3D-dynamic"}
+#' @param type is the type of plot to be shown, available options are: \code{"2D","3D","2D+3D", "2D-dynamic","3D-dynamic"}
 #' @param k represent the number of time serie (column of \code{TS}). Is used only if \code{type} parameter is set as one of following options: \code{"2D","3D"} or \code{"2D+3D"}
 #' @param fpss is the number of frames per second. Is only used for types: \code{"2D-dynamic"} or \code{"3D-dynamic"}
 #' @param windowsize is a vector that contain width and height
