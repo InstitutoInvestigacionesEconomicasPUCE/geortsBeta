@@ -21,7 +21,8 @@ Imports:
     gridExtra (>= 2.3),
     magick (>= 2.0),
     rayshader (>= 0.10.1),
-    rgl (>= 0.99.16)
+    rgl (>= 0.99.16),
+    gganimate (>= 1.0.3)
 Description: This package is used for the reconstruction of Geographical 
     Time Series with the use of the functions
 License: GPL-3

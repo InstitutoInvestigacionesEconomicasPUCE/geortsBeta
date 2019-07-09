@@ -17,7 +17,9 @@ geoRts = function(TS,positions.TS,weights.TS = NULL,positions.RTS=NULL,weights.R
   n = dim(TS)[2]
   if(n>=2){
     #
-    if(is.null(weights.TS )) weights.TS = rep(1,dim(positions.TS)[1])
+    if(is.null(weights.TS )){
+      weights.TS = rep(1,dim(positions.TS)[1])
+    }
 
     if(is.null(positions.TS)){
       if(is.null(D)){
