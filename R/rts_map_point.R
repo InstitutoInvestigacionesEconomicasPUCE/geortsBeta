@@ -5,9 +5,9 @@
 #' @param k Represent the number of time serie (column of \code{TS}). Is used only if \code{type} parameter is set as one of following options: \code{"2D","3D"} or \code{"2D+3D"}
 #' @param fpss is the number of frames per second. Is only used for types: \code{"2D-dynamic"} or \code{"3D-dynamic"}
 #' @param windowsize a vector with width, and height for
-#' @param save.plot Set as \code {TRUE} for save the plot
+#' @param save.plot Set as TRUE for save the plot
 #' @param file.name A character for name of saved plot
-#' @param ... Arguments passed to \code{geoRts()} function, or \code{plot_gg()} from \code{rayshader} package
+#' @param ... Arguments passed to \code{geoRts} or \code{plot_gg} function, from  \code{rayshader} package
 #' @return returns a object of class "leaflet", that contain a animated map with points that represents the time series in it's geographical positions
 #' @import gganimate
 #' @import rayshader
@@ -15,8 +15,6 @@
 #' @import rgl
 #' @import magick
 #' @export
-
-# Falta modificar ..........
 
 rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,weights.RTS=NULL,type = c("2D","3D","2D+3D","2D-dynamic","3D-dynamic"), k=1, fpss=5, windowsize = c(400, 650) ,save.plot=TRUE,file.name="plot", ...){
   # clean Time Series
@@ -35,15 +33,15 @@ rts_map_point = function(TS,positions.TS, RTS, positions.RTS ,weights.TS=NULL,we
                             weights.TS = weights.TS,...)
              }
              positions.RTS$xk = as.numeric(RTS[k,])
-             positions.RTS$w = 1
+             positions.RTS$w = weights.RTS
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
 
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
-               ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, colour = xk,size=w)) +
+               ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
-                                   color='grey',shape=1,show.legend = F)+
-               ggplot2::scale_fill_viridis_c(option = "inferno")
+                                   color='grey',shape=1,show.legend = F)#+
+               # ggplot2::scale_color_viridis_c(option = "inferno")
            },
 
            "2D-dynamic" = {
