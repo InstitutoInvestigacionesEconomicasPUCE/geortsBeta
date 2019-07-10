@@ -47,9 +47,9 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
 
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+             pl = ggplot2::ggplot(data=positions.RTS,ggplot2::aes(lon, lat, fill = xk)) +
                ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
-               ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
+               ggplot2::geom_point(data=positions.TS,ggplot2::aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
                ggplot2::scale_fill_viridis_c(option = "inferno")
            },
@@ -88,9 +88,9 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS
 
              # grafico gganimate ....................................
 
-             pl = ggplot2::ggplot(data=positions.RTSAn,aes(lon, lat, fill = Xt)) +
+             pl = ggplot2::ggplot(data=positions.RTSAn,ggplot2::aes(lon, lat, fill = Xt)) +
                ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
-               ggplot2::geom_point(data=positions.TSAn,aes(lon,lat,size=w),
+               ggplot2::geom_point(data=positions.TSAn,ggplot2::aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
                ggplot2::scale_fill_viridis_c(option = "inferno")
 
@@ -120,9 +120,9 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
              # Grafico .........
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+             pl = ggplot2::ggplot(data=positions.RTS,ggplot2::aes(lon, lat, fill = xk)) +
                ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
-               ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
+               ggplot2::geom_point(data=positions.TS,ggplot2::aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
                ggplot2::scale_fill_viridis_c(option = "inferno")
              rayshader::plot_gg(pl,windowsize=windowsize,...)
@@ -147,9 +147,9 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
              # Grafico  ...........
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+             pl = ggplot2::ggplot(data=positions.RTS,ggplot2::aes(lon, lat, fill = xk)) +
                ggplot2::geom_raster(interpolate = TRUE) + ggplot2::theme_minimal()+
-               ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
+               ggplot2::geom_point(data=positions.TS,ggplot2::aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
                ggplot2::scale_fill_viridis_c(option = "inferno")
              par(mfrow = c(1, 2))
@@ -229,7 +229,7 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS
                            Elevation=eangles) %>%
                       tidyr::gather('Type','Angle',2:5)) +
                ggplot2::ggtitle("Angles of 3D Animation") +
-               ggplot2::geom_path(aes(Frame,Angle,color=Type),size=1) +
+               ggplot2::geom_path(ggplot2::aes(Frame,Angle,color=Type),size=1) +
                ggplot2::facet_wrap(~Type, scales='free') +
                ggplot2::guides(color='none')
 
@@ -240,11 +240,11 @@ rts_map_raster = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS
                fn       <- file.path(exproot,sprintf('%04d.png',f))
 
                plc = ggplot2::ggplot(data= positions.RTSAn %>% filter(Time == Dates[f]) ,
-                            aes(lon, lat, fill = Xt)) +
+                            ggplot2::aes(lon, lat, fill = Xt)) +
                  ggplot2::geom_raster(interpolate = TRUE) +
                  ggplot2::theme_minimal()+
                  ggplot2::geom_point(data=positions.TSAn,
-                            aes(lon,lat,size=w),
+                            ggplot2::aes(lon,lat,size=w),
                             color='grey',shape=1,
                             show.legend = FALSE)+
                  ggplot2::scale_fill_viridis_c(option = "inferno")
