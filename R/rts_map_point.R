@@ -53,11 +53,12 @@ rts_map_point = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS,
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
 
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, colour = xk,size=w)) +
                ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
-               ggplot2::scale_fill_viridis_c(option = "inferno")
+               ggplot2::scale_color_viridis_c(option = "inferno")
+             return(pl)
            },
 
            "2D-dynamic" = {
@@ -99,17 +100,18 @@ rts_map_point = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS,
 
              # grafico gganimate ....................................
 
-             pl = ggplot2::ggplot(data=positions.RTSAn,aes(lon, lat, fill = Xt)) +
+             pl = ggplot2::ggplot(data=positions.RTSAn,aes(lon, lat, colour = Xt,size=w)) +
                ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TSAn,aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
-               ggplot2::scale_fill_viridis_c(option = "inferno")
+               ggplot2::scale_color_viridis_c(option = "inferno")
 
              pl = pl + gganimate::transition_time(Time)  +
                labs(title = "Date: {frame_time}")
              pl = gganimate::animate(pl,fps=fpss)
 
              if(save.plot) gganimate::anim_save(animation = pl,filename = paste0(file.name,".gif"))
+             return(pl)
            },
 
            "3D"={
@@ -136,11 +138,11 @@ rts_map_point = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS,
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
              # Grafico .........
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, colour = xk,size=w)) +
                ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
-               ggplot2::scale_fill_viridis_c(option = "inferno")
+               ggplot2::scale_color_viridis_c(option = "inferno")
              rayshader::plot_gg(pl,windowsize=windowsize,...)
            },
 
@@ -168,11 +170,11 @@ rts_map_point = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS,
              positions.TS$xk = as.numeric(TS[k,])
              positions.TS$w = weights.TS
              # Grafico  ...........
-             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, fill = xk)) +
+             pl = ggplot2::ggplot(data=positions.RTS,aes(lon, lat, colour = xk,size=w)) +
                ggplot2::geom_point() + ggplot2::theme_minimal()+
                ggplot2::geom_point(data=positions.TS,aes(lon,lat,size=w),
                                    color='grey',shape=1,show.legend = F)+
-               ggplot2::scale_fill_viridis_c(option = "inferno")
+               ggplot2::scale_color_viridis_c(option = "inferno")
              par(mfrow = c(1, 2))
              rayshader::plot_gg(pl, raytrace = FALSE, preview = TRUE,...)
              rayshader::plot_gg(pl,...)
@@ -266,14 +268,14 @@ rts_map_point = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS,
                fn       <- file.path(exproot,sprintf('%04d.png',f))
 
                plc = ggplot2::ggplot(data= positions.RTSAn %>% filter(Time == Dates[f]) ,
-                                     aes(lon, lat, fill = Xt)) +
+                                     aes(lon, lat, colour = Xt,size=w)) +
                  ggplot2::geom_point() +
                  ggplot2::theme_minimal()+
                  ggplot2::geom_point(data=positions.TSAn,
                                      aes(lon,lat,size=w),
                                      color='grey',shape=1,
                                      show.legend = FALSE)+
-                 ggplot2::scale_fill_viridis_c(option = "inferno")
+                 ggplot2::scale_color_viridis_c(option = "inferno")
 
                #........................................
                rayshader::plot_gg(plc, width = maxw, height= maxw*asprat,
@@ -302,5 +304,5 @@ rts_map_point = function(TS,positions.TS,weights.TS=NULL,RTS=NULL,positions.RTS,
     )
 
   }
-  return(pl)
+
 }
