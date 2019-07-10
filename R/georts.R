@@ -1,9 +1,9 @@
 #' @title Geo-reconstruction of Time Series
 #' @description This function aproximate by interpolation the values of a time series (unknonw), based in the values of near (geographically) time series.
 #' @param TS is a object of class "ts" (time series), with \code{ncol()>2}
-#' @param positions.TS is a data frame that containing longitude and latitude asociated to time series in TS.
+#' @param positions.TS is a data frame that containing longitude (\code{lon}) and latitude (\code{lat}) asociated to time series in TS.
 #' @param weights.TS is a data frame that containing weights (of influence) of time series in TS.
-#' @param positions.RTS is a data frame that containing values of longitude and latitude of each time serie to be reconstructed. If \code{positions.RTS=NULL}, then \code{positions.RTS} is calculated as a grid of points into a square that contains all points of \code{positions.TS}.
+#' @param positions.RTS is a data frame that containing values of longitude (\code{lon}) and latitude (\code{lat}) of each time serie to be reconstructed. If \code{positions.RTS=NULL}, then \code{positions.RTS} is calculated as a grid of points into a square that contains all points of \code{positions.TS}.
 #' @param weights.RTS is a data frame that containing weights (of influence) of time series in RTS.
 #' @param ... Extra arguments passed to \code{rts_hull_grid} function
 #' @param D is a distance (or disimilarity) matrix between Time Series. If positions.TS is defined and \code{D=NULL} then D is calculated as the euclidean distance matrix between positions (i.e.  between rows of \code{positions.TS}). If \code{positions.TS=NULL}, D must be defined, and then \code{positions.TS} is calculated (with not a geographical representation) using Multidimensional Scaling (MDS).

@@ -4,16 +4,16 @@
 \alias{rts_hull_grid}
 \title{Create a hull grid of points}
 \usage{
-rts_hull_grid(positions.TS, nx.rts = 10 * dim(positions.TS)[1],
-  ny.rts = 10 * dim(positions.TS)[1], type.grid = c("square",
+rts_hull_grid(positions.TS, nx.grid = 10 * dim(positions.TS)[1],
+  ny.grid = 10 * dim(positions.TS)[1], type.grid = c("square",
   "convex"))
 }
 \arguments{
-\item{positions.TS}{is a data frame that containing longitude (\code{lon}) and latitude (\code{lat}) asociated to time series in TS}
+\item{positions.TS}{is a data frame that containing longitude (\code{lon}) and latitude (\code{lat}) asociated to time series in TS.}
 
-\item{nx.rts}{is a interger that represents the number of points of longitude \code{log}(new positions) of the grid.}
+\item{nx.grid}{is a interger that represents the number of points of longitude \code{log}(new positions) of the grid.}
 
-\item{ny.rts}{is a interger that represents the number of points of latitude \code{lat}(new positions) of the grid.}
+\item{ny.grid}{is a interger that represents the number of points of latitude \code{lat}(new positions) of the grid.}
 
 \item{type.grid}{Typo of grid to build, available options are: \code{"convex","square"}}
 }

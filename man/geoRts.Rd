@@ -10,11 +10,11 @@ geoRts(TS, positions.TS, weights.TS = NULL, positions.RTS = NULL,
 \arguments{
 \item{TS}{is a object of class "ts" (time series), with \code{ncol()>2}}
 
-\item{positions.TS}{is a data frame that containing longitude and latitude asociated to time series in TS.}
+\item{positions.TS}{is a data frame that containing longitude (\code{lon}) and latitude (\code{lat}) asociated to time series in TS.}
 
 \item{weights.TS}{is a data frame that containing weights (of influence) of time series in TS.}
 
-\item{positions.RTS}{is a data frame that containing values of longitude and latitude of each time serie to be reconstructed. If \code{positions.RTS=NULL}, then \code{positions.RTS} is calculated as a grid of points into a square that contains all points of \code{positions.TS}.}
+\item{positions.RTS}{is a data frame that containing values of longitude (\code{lon}) and latitude (\code{lat}) of each time serie to be reconstructed. If \code{positions.RTS=NULL}, then \code{positions.RTS} is calculated as a grid of points into a square that contains all points of \code{positions.TS}.}
 
 \item{weights.RTS}{is a data frame that containing weights (of influence) of time series in RTS.}
 

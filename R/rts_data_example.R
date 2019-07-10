@@ -18,6 +18,9 @@ rts_data_example = function(m.ts = 8, nx.rts = 5,ny.rts = 5){
 	positions.TS = data.frame(lon = rnorm(m,0,10),lat=rnorm(m,30,10))
 	weights.TS = round(runif(m,1,10))
 	#................................
+
+	# positions.RTS = data.frame(lon = rnorm(n,0,10),lat=rnorm(n,30,10))
+	# weights.RTS = round(runif(n,5,15))
 	rangoX = abs( max(positions.TS$lon)-min(positions.TS$lon) )
 	rangoY = abs( max(positions.TS$lat)-min(positions.TS$lat) )
 	positions.RTS =expand.grid(lon =seq(from=min(positions.TS$lon)-0.05*rangoX,

@@ -4,25 +4,25 @@
 \alias{rts_map_point}
 \title{Map representation of Geographical Time Series}
 \usage{
-rts_map_point(TS, positions.TS, RTS, positions.RTS, weights.TS = NULL,
-  weights.RTS = NULL, type = c("2D", "3D", "2D+3D", "2D-dynamic",
-  "3D-dynamic"), k = 1, fpss = 5, windowsize = c(400, 650),
-  save.plot = TRUE, file.name = "plot", ...)
+rts_map_point(TS, positions.TS, weights.TS = NULL, RTS = NULL,
+  positions.RTS, weights.RTS = NULL, type = c("2D", "3D", "2D+3D",
+  "2D-dynamic", "3D-dynamic"), k = 1, fpss = 5, windowsize = c(700,
+  700), save.plot = TRUE, file.name = "plot", ...)
 }
 \arguments{
 \item{TS}{is a object of class "ts" (time series), with \code{ncol()>2}}
 
-\item{positions.TS}{is a data frame that containing longitude and latitude asociated to time series in TS.}
-
-\item{positions.RTS}{is a data frame that containing values of longitude and latitude of each time serie to be reconstructed. If \code{positions.RTS=NULL}, then \code{positions.RTS} is calculated as a grid of points into a square that contains all points of \code{positions.TS}.}
+\item{positions.TS}{is a data frame that containing longitude (\code{lon}) and latitude (\code{lat}) asociated to time series in TS.}
 
 \item{weights.TS}{is a data frame that containing weights (of influence) of time series in TS.}
+
+\item{positions.RTS}{is a data frame that containing values of longitude (\code{lon}) and latitude (\code{lat}) of each time serie to be reconstructed. If \code{positions.RTS=NULL}, then \code{positions.RTS} is calculated as a grid of points into a square that contains all points of \code{positions.TS}.}
 
 \item{weights.RTS}{is a data frame that containing weights (of influence) of time series in RTS.}
 
 \item{type}{is the type of plot to be shown, available options are: \code{"2D","3D","2D+3D", "2D-dynamic","3D-dynamic"}}
 
-\item{k}{represent the number of time serie (column of \code{TS}). Is used only if \code{type} parameter is set as one of following options: \code{"2D","3D"} or \code{"2D+3D"}}
+\item{k}{Represent the number of time serie (column of \code{TS}). Is used only if \code{type} parameter is set as one of following options: \code{"2D","3D"} or \code{"2D+3D"}}
 
 \item{fpss}{is the number of frames per second. Is only used for types: \code{"2D-dynamic"} or \code{"3D-dynamic"}}
 
@@ -32,7 +32,7 @@ rts_map_point(TS, positions.TS, RTS, positions.RTS, weights.TS = NULL,
 
 \item{file.name}{is a character for name of saved plot}
 
-\item{...}{Arguments passed to \code{geoRts} or \code{plot_gg} function, from  \code{rayshader} package}
+\item{...}{Arguments passed to \code{geoRts}, or \code{plot_gg} function from  \code{rayshader} package}
 }
 \value{
 returns a object of class "leaflet", that contain a animated map with points that represents the time series in it's geographical positions
