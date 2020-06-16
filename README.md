@@ -46,7 +46,7 @@ Static Maps
 
 <img src="man/figures/rearme_img4.png" align="center"/>
 
-Moving Maps
+Dynamic Maps
 ----------------
 <img src="man/figures/rearme_img5.gif" align="right"/></img>
 <img src="man/figures/rearme_img6.gif" align="right"/>
